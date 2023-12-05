@@ -46,10 +46,10 @@ class BaseStorageLayer {
     }
 }
 
-class InMemoryStorageLayer { }
+class InMemoryStorageLayer {}
 
 class DatabaseStorageLayer {
-    constructor(memory_backend: DatabaseMemoryLayer) { }
+    constructor(memory_backend: DatabaseMemoryLayer) {}
 
     init() {
         throw new Error("init method must be implemented");

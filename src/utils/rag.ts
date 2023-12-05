@@ -1,6 +1,10 @@
 import { llm } from "../config.js";
 import { ErrorMessage } from "../types/llms/base.js";
-import { OpenAiChatCompletionResponse, OpenAiStreamingChatCompletionResponse, OpenAiStreamingResponse } from "../types/llms/openai/chat.js";
+import {
+    OpenAiChatCompletionResponse,
+    OpenAiStreamingChatCompletionResponse,
+    OpenAiStreamingResponse,
+} from "../types/llms/openai/chat.js";
 
 export const getInfoBasedResponse = async (info: string, prompt: string) => {
     let message = `You are supposed to answer from the following information:
@@ -11,7 +15,11 @@ export const getInfoBasedResponse = async (info: string, prompt: string) => {
     ${prompt}
     `;
 
-    let result: OpenAiStreamingChatCompletionResponse | OpenAiChatCompletionResponse | OpenAiStreamingResponse | ErrorMessage = await llm.chatCompletions(message);
+    let result:
+        | OpenAiStreamingChatCompletionResponse
+        | OpenAiChatCompletionResponse
+        | OpenAiStreamingResponse
+        | ErrorMessage = await llm.chatCompletions(message);
 
     if (Array.isArray(result)) {
         result = result[0];

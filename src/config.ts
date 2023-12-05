@@ -1,9 +1,5 @@
-// import { OpenAI } from "langchain/llms/openai";
-// import * as qdrant from "langchain/vectorstores/qdrant";
-// import * as embeddings from "langchain/embeddings/openai";
 import { OpenAI } from "./utils/llms.js";
 import XRay from "x-ray";
-// import { Axios } from "axios";
 import dotenv from "dotenv";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import * as dataProcessors from "./utils/data_processors.js";
@@ -16,7 +12,7 @@ dotenv.config();
 
 export const llm = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
-    model: "gpt-3.5-turbo"
+    model: "gpt-3.5-turbo",
 });
 
 export const vectorDb = new QdrantClient({

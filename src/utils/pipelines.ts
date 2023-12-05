@@ -1,7 +1,6 @@
 import { BaseDataProcessor } from "./data_processors.js";
 import { BasePromptProcessor } from "./prompt_processors.js";
 
-
 /**
  * Executes a data processing pipeline.
  * @param pipeline - An array of BaseDataProcessor instances representing the pipeline.

@@ -1,7 +1,6 @@
 import fs from "fs";
 import * as redis from "redis";
 
-
 /**
  * Represents the base memory layer class.
  * All other memory layer classes inherit from this class.

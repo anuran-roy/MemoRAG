@@ -7,7 +7,6 @@ import {
     ocwPageProcessor,
     ocwSearchProcessor,
 } from "../config.js";
-// import BeautifulSoup from 'beautiful-soup-js';
 import * as dataProcessors from "./data_processors.js";
 
 export const get_search_results_url = (topic_name: string, source: string) => {

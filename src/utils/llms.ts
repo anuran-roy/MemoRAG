@@ -1,5 +1,8 @@
 import axios from "axios";
-import { OpenAiChatCompletionResponse, OpenAiStreamingChatCompletionResponse } from "../types/llms/openai/chat.js";
+import {
+    OpenAiChatCompletionResponse,
+    OpenAiStreamingChatCompletionResponse,
+} from "../types/llms/openai/chat.js";
 import { ErrorMessage } from "../types/llms/base.js";
 
 /**
@@ -12,7 +15,7 @@ class LLM {
     protected model?: string;
     protected apiEndpoint: string;
 
-    constructor() { }
+    constructor() {}
 
     /**
      * Makes an API call using axios.
@@ -37,8 +40,7 @@ class LLM {
             });
 
             return response.data;
-        }
-        catch (error) {
+        } catch (error) {
             if (process.env.DEBUG) {
                 console.error(error);
             }
@@ -55,7 +57,6 @@ class LLM {
  * Provides methods for completing prompts, searching documents, and chat completions using the OpenAI API.
  */
 class OpenAI extends LLM {
-
     constructor({ apiKey, model = "davinci" }) {
         super();
         this.apiKey = apiKey;
@@ -69,7 +70,14 @@ class OpenAI extends LLM {
      * @param options - Additional options for the completion.
      * @returns A promise that resolves to the completion response from the API.
      */
-    public async complete(prompt: string, options?: Record<string, any>): Promise<ErrorMessage | OpenAiChatCompletionResponse | OpenAiStreamingChatCompletionResponse> {
+    public async complete(
+        prompt: string,
+        options?: Record<string, any>
+    ): Promise<
+        | ErrorMessage
+        | OpenAiChatCompletionResponse
+        | OpenAiStreamingChatCompletionResponse
+    > {
         return await this.call_api(
             `${this.apiEndpoint}/chat/completions`,
             "POST",
@@ -77,8 +85,8 @@ class OpenAI extends LLM {
                 model: this.model,
                 messages: [
                     {
-                        prompt
-                    }
+                        prompt,
+                    },
                 ],
                 ...options,
             },
@@ -98,7 +106,11 @@ class OpenAI extends LLM {
      * @param options - Additional options for the search.
      * @returns A promise that resolves to the search response from the API.
      */
-    public async search(documents, query: string, options?: Record<string, any>) {
+    public async search(
+        documents,
+        query: string,
+        options?: Record<string, any>
+    ) {
         return await this.call_api(
             `${this.apiEndpoint}/${this.model}/search`,
             "POST",
@@ -122,7 +134,14 @@ class OpenAI extends LLM {
      * @param options - Additional options for the chat completion.
      * @returns A promise that resolves to the chat completion response from the API.
      */
-    public async chatCompletions(prompt: string, options?: Record<string, any>): Promise<ErrorMessage | OpenAiChatCompletionResponse | OpenAiStreamingChatCompletionResponse> {
+    public async chatCompletions(
+        prompt: string,
+        options?: Record<string, any>
+    ): Promise<
+        | ErrorMessage
+        | OpenAiChatCompletionResponse
+        | OpenAiStreamingChatCompletionResponse
+    > {
         return await this.call_api(
             `${this.apiEndpoint}/${this.model}/chat`,
             "POST",
@@ -181,7 +200,11 @@ class Anthropic extends LLM {
      * @param options - Additional options for the search.
      * @returns A promise that resolves to the search response from the API.
      */
-    public async search(documents, query: string, options: Record<string, any>) {
+    public async search(
+        documents,
+        query: string,
+        options: Record<string, any>
+    ) {
         return await this.call_api(
             `${this.apiEndpoint}/search`,
             "POST",

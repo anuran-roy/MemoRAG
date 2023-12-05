@@ -83,4 +83,3 @@ export interface OpenAiChatCompletionResponse {
     object?: "chat.completion";
     usage: OpenAiUsage;
 }
-
