@@ -22,7 +22,7 @@
         "@types/node": "^20.8.2",
         "@types/pg": "^8.10.3",
         "@types/x-ray": "^2.3.4",
-        "axios": "^1.5.1",
+        "axios": "^1.6.0",
         "cheerio": "^1.0.0-rc.12",
         "dotenv": "^16.3.1",
         "drizzle-kit": "^0.19.13",
