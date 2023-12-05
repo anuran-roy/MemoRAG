@@ -1,0 +1,190 @@
+{
+    "version": "5",
+    "dialect": "pg",
+    "id": "1c1e63a6-379f-458e-8b24-ac25aec65907",
+    "prevId": "00000000-0000-0000-0000-000000000000",
+    "tables": {
+        "chat_message": {
+            "name": "chat_message",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "serial",
+                    "primaryKey": true,
+                    "notNull": true
+                },
+                "chat_session_id": {
+                    "name": "chat_session_id",
+                    "type": "integer",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "content": {
+                    "name": "content",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "timestamp": {
+                    "name": "timestamp",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                }
+            },
+            "indexes": {},
+            "foreignKeys": {
+                "chat_message_chat_session_id_chat_session_id_fk": {
+                    "name": "chat_message_chat_session_id_chat_session_id_fk",
+                    "tableFrom": "chat_message",
+                    "tableTo": "chat_session",
+                    "columnsFrom": ["chat_session_id"],
+                    "columnsTo": ["id"],
+                    "onDelete": "no action",
+                    "onUpdate": "no action"
+                }
+            },
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {}
+        },
+        "chat_session": {
+            "name": "chat_session",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "serial",
+                    "primaryKey": true,
+                    "notNull": true
+                },
+                "user_id": {
+                    "name": "user_id",
+                    "type": "integer",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "created_at": {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                },
+                "updated_at": {
+                    "name": "updated_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                },
+                "ended_at": {
+                    "name": "ended_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "ended": {
+                    "name": "ended",
+                    "type": "boolean",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": false
+                }
+            },
+            "indexes": {
+                "chat_idx": {
+                    "name": "chat_idx",
+                    "columns": ["id"],
+                    "isUnique": true
+                }
+            },
+            "foreignKeys": {
+                "chat_session_user_id_users_id_fk": {
+                    "name": "chat_session_user_id_users_id_fk",
+                    "tableFrom": "chat_session",
+                    "tableTo": "users",
+                    "columnsFrom": ["user_id"],
+                    "columnsTo": ["id"],
+                    "onDelete": "no action",
+                    "onUpdate": "no action"
+                }
+            },
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {}
+        },
+        "users": {
+            "name": "users",
+            "schema": "",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "serial",
+                    "primaryKey": true,
+                    "notNull": true
+                },
+                "email": {
+                    "name": "email",
+                    "type": "varchar(256)",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "username": {
+                    "name": "username",
+                    "type": "varchar(256)",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "password_hash": {
+                    "name": "password_hash",
+                    "type": "varchar(1024)",
+                    "primaryKey": false,
+                    "notNull": false
+                },
+                "created_at": {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": "now()"
+                },
+                "verified": {
+                    "name": "verified",
+                    "type": "boolean",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "default": false
+                }
+            },
+            "indexes": {
+                "email_idx": {
+                    "name": "email_idx",
+                    "columns": ["email"],
+                    "isUnique": true
+                },
+                "user_idx": {
+                    "name": "user_idx",
+                    "columns": ["username"],
+                    "isUnique": true
+                }
+            },
+            "foreignKeys": {},
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {
+                "users_username_unique": {
+                    "name": "users_username_unique",
+                    "nullsNotDistinct": false,
+                    "columns": ["username"]
+                }
+            }
+        }
+    },
+    "enums": {},
+    "schemas": {},
+    "_meta": {
+        "schemas": {},
+        "tables": {},
+        "columns": {}
+    }
+}

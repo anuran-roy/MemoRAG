@@ -1,0 +1,9 @@
+{
+    "out": "./drizzle/migrations",
+    "schema": "./src/schemas/*",
+    "breakpoints": true,
+    "driver": "pg",
+    "dbCredentials": {
+        "connectionString": "postgres://postgres:postgres@localhost:5432/memorag"
+    }
+}

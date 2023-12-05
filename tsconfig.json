@@ -1,0 +1,13 @@
+{
+    "include": ["./src/", "./.env", "./*.json"],
+    "exclude": ["node_modules", "build"],
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "module": "NodeNext",
+        "esModuleInterop": true,
+        "target": "ES2020",
+        "moduleResolution": "NodeNext",
+        "sourceMap": true,
+        "outDir": "build"
+    }
+}
