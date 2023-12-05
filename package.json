@@ -9,12 +9,13 @@
         "seed": "npx drizzle-kit generate:pg",
         "migrate": "npx drizzle-kit push:pg",
         "clean": "rimraf dist",
-        "start": "npm-run-all clean --parallel watch:build watch:server --print-label",
+        "dev": "npm-run-all clean --parallel watch:build watch:server --print-label",
         "watch:build": "tsc --watch",
-        "watch:server": "nodemon './build/index.js' --watch './build'"
+        "watch:server": "nodemon './build/index.js' --watch './build'",
+        "start": "node './build/index.js'"
     },
     "keywords": [],
-    "author": "",
+    "author": "Anuran Roy <anuranroy02@gmail.com>",
     "license": "ISC",
     "dependencies": {
         "@qdrant/js-client-rest": "^1.5.0",

@@ -24,8 +24,15 @@ npm i
 
 3. Run the server
 
+a. For development
+
 ```bash
-npm start
+npm run dev
+```
+
+b. For production
+```bash
+npm run start
 ```
 
 ## Tech Stack
